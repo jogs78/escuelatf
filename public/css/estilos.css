@@ -1,0 +1,25 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+.contenedor{
+    background: #FAFAFA;
+    min-height:600px;
+    max-height: 1000px;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    
+ 
+}
+
+body{
+    
+
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    background: url(/other/images/body.png) repeat top left;
+    font-weight: 300;
+    font-size: 15px;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+}
+

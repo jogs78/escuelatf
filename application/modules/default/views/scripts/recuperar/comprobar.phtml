@@ -1,0 +1,91 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Comprobacion de codigo</title>
+        <meta charset="UTF-8" />
+        <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="/css/estilos.css" rel="stylesheet">
+        <link  href="/css/bootstrap-responsive.css" rel="STYLESHEET" type="text/css" >
+         <script src="/js/jquery-1.9.1.js" type="text/javascript"></script>
+         <script src="/js/jquery.validate.js" type="text/javascript"></script>
+         <script type="text/javascript">
+    $().ready(function() {
+ 
+         $("#f").validate({
+             
+            // Empezamos por las reglas
+	        rules:{
+                     pass: { // Cuando hay mas de una regla abriremos llaves, aqui validamos username
+	            required: true, // Tienes que ser requerido
+	                minlength: 5    // Tiene que tener un tamaño mayor o igual a dos caracteres
+	            },
+                    passdos: { // Cuando hay mas de una regla abriremos llaves, aqui validamos username
+	            required: true, // Tienes que ser requerido
+	                minlength: 5,
+                          equalTo: "#pass" // Tiene que tener un tamaño mayor o igual a dos caracteres
+	            }
+                },
+                messages:{
+                   pass: {
+				required: "Por favor, introduzca su password",
+				minlength: "Su password debe de tener al menos 5 caracteres"
+			},
+			passdos: {
+				required: "Por favor, introduzca de nuevo su password",
+				minlength: "Su password debe de tener al menos 5 caracteres",
+				equalTo: "Las password introducidas no son iguales"
+
+                }
+            }
+                
+            });        
+    });
+    </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="span3 "></div>
+            <div class="span6">
+                <h3 class="text-center text-info"> Recuperacion de contraseñas</h3>
+                
+                 <?php if ( isset($this->error) ) {
+                    echo $this->error;
+                    
+                   } ?>
+                 <?php if ( isset($this->formulario)): ?>
+                <h4 class="text-center">Establesca nueva contraseña</h4>
+               
+                <form class="form-horizontal"  id="f" class="form-inline " method="post" action="/recuperar/comprobar?codigo=<?php echo $this->codigo; ?>">
+                <div class="control-group">
+                <label class="control-label" for="pass">Nueva Contraseña:</label>
+                <div class="controls">
+                 
+                    <input type="password" id="pass" name="pass" placeholder="Nueva contraseña">
+                </div>
+                </div>
+                <div class="control-group">
+                <label class="control-label" for="passdos">Repetir Password</label>
+                <div class="controls">  
+                    <input type="password" id="passdos" name="passdos" placeholder="Repetir contraseña">
+                <button type="submit" class="btn btn-primary">Cambiar</button>
+                </div>
+                </div>
+                </form>
+                <?php endif;?>
+                
+                
+                
+                
+            
+         </div>
+                <div class="span3"></div>
+         </div>
+         </div>
+    </body>
+    
+</html>
+
+
+
+

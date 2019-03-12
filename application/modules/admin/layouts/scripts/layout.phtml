@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+       
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Menu Administrador</title>
+        <link  href="/css/bootstrap.css" rel="STYLESHEET" type="text/css" >
+        <link  href="/css/bootstrap-responsive.css" rel="STYLESHEET" type="text/css" >
+        <link  href="/css/jquery-ui.css" rel="STYLESHEET" type="text/css" media="screen" >
+        
+
+        <script type="text/javascript" src="/js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script> 
+        <script type="text/javascript" src="/js/jquery-ui-1.10.1.custom.js"></script>
+ 
+         <?php
+        $auth=Zend_Auth::getInstance(); 
+        $usuario=$auth->getStorage()->read();
+      
+        ?>
+  <script>
+ function Calcula(form) {
+   // var x= form.entrada.value();
+   form.resultados.value = form.entrada.value;
+}
+
+  </script>
+<script language="JavaScript"> 
+function ciclo($van , $id){ 
+    if (confirm( "Desea "+$van+" el semestre")){ 
+       // alert($id);
+       if($van=='iniciar'){
+            document.location.href= '/admin/cicloescolar/iniciar/id/'+$id;
+            //alert('iniciar');     
+       }
+       if($van=='terminar'){
+           //alert('terminar');
+            document.location.href= '/admin/cicloescolar/terminar/id/'+$id;         
+       }
+}
+}
+ 
+</script>
+
+    </head>
+    <body >
+        <div class="container"> <img src="/img/administrador.png" >  </div>
+        <div class="container">
+	<div class="navbar navbar-inverse">
+	<div class="navbar-inner ">
+	<div class="container">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#">Bienvenido:<?php echo $usuario->numempleado; ?></a> </li>
+		<li class="divider-vertical"></li>
+                <li class="dropdown" id="menu1">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1" data-toggle="tab">ALUMNOS
+                    <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/alumno/alta">Alta Alumno</a></li>
+                        <li><a href="/admin/alumno/buscar">Buscar Alumno</a></li>
+                        <li><a href="/admin/alumno/bajatemporal">Baja Temporal</a></li>
+                        <li><a href="/admin/alumno/reincorporacion">Reincorporación</a></li>
+                        
+                    </ul>
+                </li>
+                <li class="dropdown" id="menu2">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu2">PROFESORES
+                    <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/profesor/alta">Alta profesor</a></li>
+                        <li><a href="/admin/alumno/altagrupo">Asignar Materia-Profesor</a></li>                    
+                    </ul>
+                </li>
+                <li class="dropdown" id="menu3">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu3">CICLO-ESCOLAR
+                    <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/cicloescolar/alta">Alta Ciclo-Escolar</a></li>                     
+                    </ul>
+                </li> 
+                <li class="divider-vertical"></li>
+                                <li ><a href="/alu/datos/cerrarsesion">Cerrar sesion</a></li>
+                 <li class="divider-vertical"></li>
+      </ul>             
+
+	</div>   
+	</div>
+	</div>
+             
+</div>
+     
+
+        
+  <div class="container">
+
+    <?php echo $this->layout()->content; 
+    
+     if ( isset($_GET['edo']) ):?>
+      <?php if($_GET['edo']=='echo'):?>
+        <div class="alert alert-success"><h4><p ALIGN=center>¡Alumno agregado con exito!</p></h4></div>
+      <?php endif;?>
+      <?php if($_GET['edo']=='error'):?>
+        <div class="alert alert-error"><h4><p ALIGN=center>¡Lo sentimos, el alumno ingresado ya ha sido registrado!</p></h4></div>
+      <?php endif;?>
+        
+        <?php if($_GET['edo']=='echop'):?>
+        <div class="alert alert-success"><h4><p ALIGN=center>¡Profesor agregado con exito!</p></h4></div>
+      <?php endif;?>
+      <?php if($_GET['edo']=='errorp'):?>
+        <div class="alert alert-error"><h4><p ALIGN=center>¡Lo sentimos, el profesor ingresado ya ha sido registrado!</p></h4></div>
+      <?php endif;?>
+                        
+    <?php endif; ?>  
+  
+        
+     </body>
+</html>

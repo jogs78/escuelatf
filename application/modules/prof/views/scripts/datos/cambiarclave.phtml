@@ -1,0 +1,83 @@
+    <h3 class="text-center text-info"> Cambiar Contraseña</h3>
+ 
+ <div class="container">
+   <form class="form-horizontal" method="post" id="f">
+        <fieldset>
+             <legend class=" text-center">Llene los campos para realizar el cambio de contraseña</legend>
+     <label class="control-label">Contraseña nueva:</label>
+        <div class ="controls">
+            <input type="password"  id="repetir" required="true" name="repetir" class="span2"> 
+                      
+        </div>
+    </fieldset>
+     <fieldset>
+     <label class="control-label">Repita:</label>
+        <div class ="controls">
+           
+            
+              <input type="password"  id="password[nuevo]" required="true"  class="span2"  name="password[nuevo]" > 
+              
+        </div>
+    </fieldset>
+     <fieldset>
+        
+         <div class="control">
+            <label class="control-label">Contraseña anterior:</label>
+             <div class="controls">
+                 <input type="password" class="span2" required="true" id="password[anterior]" name="password[anterior]"  >
+             </div>
+         </div>
+     </fieldset>
+     
+    
+          <div class="form-actions">
+              <input type="submit" value="Actualizar" class="btn-primary btn-large" >
+               </div>
+   </form>  
+     <?php
+     if(isset($this->error))
+         echo $this->error;
+             
+     ?>
+       </div>
+        
+<script type="text/javascript">
+      
+  $("#f").validate({
+             
+                 rules:{
+                     'password[nuevo]': { 	            
+                        required: true, 
+                         equalTo: "#repetir"
+                       },
+                        repetir: { 
+                            required: true, 
+                           minlength: 5,
+
+                        },
+                    'password[anterior]': {
+                        required: true, 
+	            },
+                   
+                },
+                messages:{
+                    'password[nuevo]': {
+				
+                              required: "Por favor, repita su nueva contraseña",
+                                 equalTo: "las contraseñas no coinciden, verifique por favor",
+			},
+			 repetir: {
+				
+                                required: "Por favor, introduzca su nueva contraseña",
+                                  minlength:" su nueva contraseña debe de tener por lo menos 5 caracteres",
+                               
+                            },
+                            'password[anterior]': {
+				required: "Por favor, introduzca su contraseña anterior",
+                            },
+
+                }
+                   
+            });        
+    
+</script>

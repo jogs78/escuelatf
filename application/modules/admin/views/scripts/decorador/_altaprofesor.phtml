@@ -1,0 +1,52 @@
+<form class="form-horizontal" method="post" name="form">
+    <fieldset>
+        <center>
+            <legend>Alta Profesor</legend>
+        </center>   
+    </fieldset>
+        <fieldset>
+            <div class="control-group success">
+                <label class="control-label">Cedula*:</label>
+                 <div class ="controls">
+                      <?php  echo $this->element->getElement('cedula') ; ?>
+                </div>
+                <label class="control-label">Nombre*:</label>
+                 <div class ="controls">
+                      <?php  echo $this->element->getElement('nombre') ; ?>
+                </div>
+                <label class="control-label">Direccion:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('direccion') ; ?>
+                </div>
+                <label class="control-label">Correo Electronico*:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('correo_e') ; ?>
+                </div>
+                <label class="control-label">Telefono:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('telefono') ; ?>
+                </div>
+                <label class="control-label">fecha:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('fecha_clases') ; ?>
+                </div>
+                
+                <label class="control-label">Especialidad:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('especialidad') ; ?>
+                </div>
+                <label class="control-label">Clave de Acceso:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('contrasena') ; ?>
+                </div>
+            </div>  
+                 
+        </fieldset>
+                <div class="form-actions">
+                    <?php echo $this->element->getElement('submit'); ?>
+               </div>
+    
+        
+    
+    </form>
+

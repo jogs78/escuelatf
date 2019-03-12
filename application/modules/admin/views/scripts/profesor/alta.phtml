@@ -1,0 +1,20 @@
+<script type="text/javascript">
+        $(function() {
+      $( "#fecha_clases" ).datepicker({  
+          dateFormat: "yy-mm-dd",
+          dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
+          dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+          monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Dicimbre" ],
+          //duration: "slow",
+          showAnim: "slideDown"});       
+  });
+</script>
+<div class="container">
+<div class="span2"></div>
+<div class="span8">
+    <?php 
+    echo $this->form;   
+    ?>
+</div>
+<div class="span2"></div>
+</div>

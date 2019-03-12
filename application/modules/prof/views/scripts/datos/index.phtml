@@ -1,0 +1,87 @@
+ <h3 class="text-center text-info"> Datos personales</h3>
+ <?php
+   ?>
+ <div class="container">
+ 
+     <table class="table table-bordered">
+         <tr class="btn-info">
+             <td>Cedula</td>
+             <td>Nombre</td>
+             <td>Especialidad</td>
+         </tr>
+         <tr>
+             <td><?php echo $this->profesor->cedula; ?></td>
+             <td><?php echo utf8_encode($this->profesor->nombre); ?></td>
+             <td><?php echo $this->profesor->especialidad ?></td>
+         </tr>
+         
+     </table>
+     
+     
+     <form class="form-horizontal" method="post" id="f">
+     <fieldset>
+         <legend class="btn-info text-center">Actualizacion de datos</legend>
+         <div class="control">
+            <label class="control-label">Telefono:</label>
+             <div class="controls">
+                 <input type="text"   required="true" id="cedula[telefono]" value="<?php  echo $this->profesor->telefono;?>" name="cedula[telefono]"  >
+             </div>
+         </div>
+     </fieldset>
+     
+     <fieldset>
+     <label class="control-label">Correo electronico:</label>
+        <div class ="controls">
+            <input type="email"  id="cedula[correo]" required="true"  class="span4" value="<?php  echo $this->profesor->correo_e;?>" name="cedula[correo_e]" >             
+        </div>
+    </fieldset>
+     <fieldset>
+     <label class="control-label">Direccion:</label>
+        <div class ="controls">
+            <input type="text"  id="cedula[direccion]" required="true"  class="span6" value="<?php  echo $this->profesor->direccion;?>" name="cedula[direccion]" >             
+        </div>
+    </fieldset>
+          <div class="form-actions">
+              <input type="submit" value="Actualizar" class="btn-primary btn-large" >
+               </div>
+   </form>           
+       </div>
+        
+<script type="text/javascript">
+      
+  $("#f").validate({
+             
+            // Empezamos por las reglas
+	        rules:{
+                     'cedula[direccion]': { // Cuando hay mas de una regla abriremos llaves, aqui validamos username
+	            required: true, // Tienes que ser requerido
+	                // Tiene que tener un tamaño mayor o igual a dos caracteres
+	            },
+                    'cedula[telefono]': { // Cuando hay mas de una regla abriremos llaves, aqui validamos username
+	            required: true, 
+                     minlength: 10 
+//// Tienes que ser requerido
+	                 // Tiene que tener un tamaño mayor o igual a dos caracteres
+	            },
+                    'cedula[correo]': { // Cuando hay mas de una regla abriremos llaves, aqui validamos username
+	            required: true, // Tienes que ser requerido
+	                // Tiene que tener un tamaño mayor o igual a dos caracteres
+	            },
+                },
+                messages:{
+                    'cedula[direccion]': {
+				required: "Por favor, introduzca su direccion",
+			},
+			 'cedula[telefono]': {
+				required: "Por favor, introduzca su telefono",
+                                minlength: "Su telefono debe de tener al menos 7 digitos",
+                            },
+                            	 'cedula[correo]': {
+				required: "Por favor, introduzca su correo",	
+                            }
+
+                }
+                   
+            });        
+    
+</script>

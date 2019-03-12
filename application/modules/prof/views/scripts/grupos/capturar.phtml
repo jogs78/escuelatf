@@ -1,0 +1,172 @@
+<h3 class="text-center text-info"> <a class="" href="/prof/grupos/index"><img  class="img-circle" src="/img/regresar.png" title="regresar"></a>Captura de calificaciones</h3>
+
+<div class="row">
+    <div class="span4"></div>
+    <div class="span4">
+    <table  class="table table-striped table-condensed" title="Informacion del grupo">
+        
+        <thead>
+            <tr>
+                <th>Grupo</th>
+                <th>Materia</th>
+                <th>Ciclo_escolar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-info">
+                <!-- datos del grupo que se esta capturando -->
+                <td><?php  echo $this->datos->idgrupo; ?> </td>
+                <td><?php echo $this->datos->asignatura; ?></td>
+                <td><?php echo $this->datos->idciclo; ?></td>
+            </tr>
+            
+        </tbody>
+        
+    </table>
+    </div>
+    <div class="span4"></div>
+</div>
+    
+<div class="row">
+    <div class="span12 pre-scrollable">
+        <!-- de los datos de la consulta del grupo los metemos dentro de un formulario  -->
+        <form method="post"  action="/prof/grupos/capturar/idgrupo/<?php echo $this->datos->idgrupo; ?>" >
+    
+        <table class="table table-bordered">
+            <thead>
+                <tr class="btn-info">
+            
+                <th><small>No</small> </th>
+                <th><small>Num.Control</small></th>
+                <th><small>Nombre</small></th>
+                <th><small>1Evaluacion</small></th>
+                    <th><small>2Evaluacion</small></th>
+                    <th><small>3Evaluacion</small></th>
+                    <th><small>4Evaluacion</small></th>
+                    <th><small>CalFinal</small></th>
+                    <th><small>E.E</small></th>
+                    <th><small>E.T.S</small></th>
+                    <th><small>Observacion</small></th>
+               
+            </tr>
+            </thead>
+            
+            <tbody >
+            
+             <?php $num=1;  $id=0;  $entre=0;?>   
+                <!--  recorremos la matriz del grupo  e imprimimos los datos correspodiente a cada campo-->
+                <?php foreach($this->lista as $alu): ?>
+               
+                <tr class="text-info"> 
+                           
+                    <td><?php echo $num; $id++; $suma=0.0;  $entre=4;?> </td>
+                    
+                    <td><input type="text" readonly="no"  name="numcontrol[<?php echo $alu->numcontrol ?>][numcontrol]" value="<?php echo $alu->numcontrol; ?>" class="input-small" ></td>
+                    <td><small><?php  echo utf8_encode($alu->apellidos." ".$alu->nombres); ?></small></td>
+                    
+                    
+                    <td>
+                        <input type="text"  pattern="[-+]?[0-9]*[.,]?[0-9]+" data-id="<?php echo $alu->numcontrol ?>" id="cal1_<?php echo $alu->numcontrol; ?>" onchange="verificar(this)" onblur="verificar(this)"  class="input-mini" name="numcontrol[<?php echo $alu->numcontrol?>][primera_e]" value="<?php echo $alu->primera_e;?>">
+                    </td>
+                    
+                    <td>
+                        <input type="text" pattern="[-+]?[0-9]*[.,]?[0-9]+"   data-id="<?php echo $alu->numcontrol ?>" id="cal2_<?php echo $alu->numcontrol; ?>" onblur="verificar(this)" class="span1" name="numcontrol[<?php echo $alu->numcontrol?>][segunda_e]" value="<?php echo  $alu->segunda_e; ?>"> 
+                    </td>
+            
+                    <td>
+                        <input type="text" pattern="[-+]?[0-9]*[.,]?[0-9]+"  data-id="<?php echo $alu->numcontrol ?>" id="cal3_<?php echo $alu->numcontrol; ?>"  onblur="verificar(this)" class="input-mini" name="numcontrol[<?php echo $alu->numcontrol?>][tercera_e]" value="<?php echo  $alu->tercera_e; ?>"> 
+                    </td>
+                    
+                     <td>
+                        <input type="text" pattern="[-+]?[0-9]*[.,]?[0-9]+"  data-id="<?php echo $alu->numcontrol ?>" id="cal4_<?php echo $alu->numcontrol; ?>" onblur="verificar(this)" class="input-mini" name="numcontrol[<?php echo $alu->numcontrol?>][cuarta_e]" value="<?php echo  $alu->cuarta_e; ?>"> 
+                    </td>
+                    <?php
+                    //si no tenemos valores debemos sacar los el promedio de lo que tengamos si no ay nada el promedio es 0 y se pinta en la tabla 
+                    if ($alu->primera_e==null || $alu->primera_e==0){ $alu->primera_e==0; $entre--;}
+                    if ($alu->segunda_e==null || $alu->segunda_e==0) {$alu->segunda_e==0; $entre--;}
+                    if ($alu->tercera_e==null || $alu->tercera_e==0){ $alu->tercera_e==0; $entre--;}
+                    if ($alu->cuarta_e==null || $alu->cuarta_e==0) {$alu->cuarta_e==0; $entre--;}
+                    if($entre!=0){ $suma=($alu->primera_e+$alu->segunda_e+$alu->tercera_e+$alu->cuarta_e)/$entre;}?>
+                     <td>
+                        <input type="text"  pattern="[-+]?[0-9]*[.,]?[0-9]+"  onblur="verificar(this)" data-id="<?php echo $alu->numcontrol ?>" id="final_<?php echo $alu->numcontrol  ;?>" class="input-mini" name="numcontrol[<?php echo $alu->numcontrol?>][calificacionfinal]" value="<?php  echo  $suma; ?>"> 
+                    </td>
+                    
+                    <td>
+                        <input type="text" pattern="[0-9]{1,2}"  onblur="verificar(this)" class="input-mini" name="numcontrol[<?php echo $alu->numcontrol?>][ee]" value="<?php echo  $alu->ee; ?>"> 
+                    </td>
+                    
+                    <td>
+                        <input type="text"  pattern="[0-9]{1,2}"  onblur="verificar(this)" class="input-mini" name="numcontrol[<?php echo $alu->numcontrol?>][ets]" value="<?php echo  $alu->ets; ?>"> 
+                    </td>
+                     <td>
+                        <input type="text" pattern="[A-Z Ñ'Éñáéíóú]{0,50}"  onblur="verificar(this)" class="input-mini" name="numcontrol[<?php echo $alu->numcontrol?>][observaciones]" value="<?php echo  $alu->observaciones; ?>"> 
+                    </td>
+                    
+                </tr>
+                <?php $num++; ?>
+                <?php endforeach;?>
+            
+            </tbody>
+           
+        </table>
+        
+         <p class="muted">Aviso:puede guardar los cambios realizados en la captura.Cuando le de Terminar ya no podra hacer mas modificaciones</p>
+       <!-- boton que envia los datos al controlador y hace la actualizacion correspodiente-->
+         <input type="submit" class="btn btn-success" value="Guardar" >
+         <!-- dentro de la tabla grupo ay un campo captura que si este es activado ya no se permiten hacer mas modificaciones
+         esto termina la captura del grupo-->
+         <a class="btn btn-success" id="terminar"href="/prof/grupos/terminar/idgrupo/ <?php  echo $this->datos->idgrupo;  ?>">Terminar</a>
+ </form> 
+         </div>
+       
+    
+       
+    </div>
+
+
+<script type="text/javascript">
+    //estas funciones verifican que los datos que se llene este dentro del rango permitido
+function verificar(na){
+    
+    $("#terminar").hide();
+    var vacio="";
+    var valor=na.value;
+    if(valor=="")
+    {
+        return true;
+    }
+    if( valor>10 || valor<0)
+    {
+        alert("VALOR NO VALIDO");
+        na.focus();
+        na.value=vacio;
+        return false;
+    }
+    
+    // CALCULANDO PROMEDIO
+    var ncrl = $(na).data("id"),total = 0,c = 0;
+    var i = 1;
+ 
+    for ( ;  i < 5; i++) {
+        var cal = "#cal"+i+"_"+ncrl,
+            val = $(cal).val();
+            console.log(Number(val));
+        if (  val === vacio
+                || Number(val) === 0) {
+            continue;
+        }
+        c++;
+        total = Number( $(cal).val() ) + total;
+        
+    }
+    
+    var promedio = total/c;
+    promedio=promedio.toFixed(1);
+    // 
+        $("#final_"+ncrl).val(promedio);
+// var final="#final_"+ncrl,val=$(final).val(promedio);
+   // alert(final);
+   // final.val(promedio);
+    return true;
+}
+</script>

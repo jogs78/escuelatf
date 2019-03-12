@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        	<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<link rel="shortcut icon" href="/assets/ico/icono.ico">   
+        <script src="/js/jquery-1.9.1.js"></script>
+        <script src="/js/modernizr.custom.63321.js"></script>
+        <link href="/css/estilos.css" rel="stylesheet">
+       <link href="/other/css/style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title class="">Escuela de Terapia Fisica</title>
+    </head>
+    <body>
+      <div class="container">
+          <header>
+          
+              <img src="/img/principal.png " height="80%" width="80%" aling="center">
+                    
+          </header>
+                
+          <nav class="codrops-demos">
+          
+          
+              <a href="#" id="admin"><strong>Administrador</strong></a>    
+              <a href="#"  id="prof">Profesor</a>
+              <a href="#" id="alumno">Alumno</a>    
+             
+     </nav>           
+               
+  
+<form class="form-1"  id="form-1" style="display:none" method="post">
+        <p class="field">
+        <input type="text" name="numempleado" placeholder=""id="user" required="true">
+        <i class="icon-user2 icon-large2"></i>
+        </p>
+        <p class="field">
+            <input type="password" name="contrasena" placeholder="Contraseña" required="true" >
+            <i class="icon-lock2 icon-large2"></i>
+        </p>       
+        <p class="submit">
+            <button type="submit" name="submit"><i class="icon-arrow-right2 icon-large2"></i></button>
+        </p>
+        <p><small>olvido su contraseña:<a id="recuperar" href="/recuperar/index"><b> recuperar</b></a></small></p>
+</form>
+                  
+</div>
+            <?php echo $this->layout()->content;?> 
+  
+        <script type="text/javascript">
+            $(document).ready(function(){
+                
+                
+              //  $("#adm").click(function(){
+                    $("#admin").click(function(event){
+                
+                    event.preventDefault();
+               
+                    $("#form-1").css("display","block ");
+                    $("#user").attr("placeholder","Usuario"); 
+                    $("#user").attr("name","numempleado");
+                    $("#form-1").attr("action","/index/loginadmin");
+                    $("#recuperar").attr("href","/recuperar/index?opc=1");
+   
+                });
+               
+                $("#prof").click(function(event){
+                    event.preventDefault();
+        
+                   $("#form-1").css("display","block ");
+                    $("#user").attr("placeholder","Cedula");
+                     $("#user").attr("name","cedula");
+                    $("#form-1").attr("action","/default/index/loginprof");
+                    $("#recuperar").attr("href","/recuperar/index?opc=2");
+   
+                }); 
+                $("#alumno").click(function(event){
+                    event.preventDefault();
+                    $("#form-1").css("display","block ");
+                    $("#user").attr("placeholder","No. control");
+                     $("#user").attr("name","numcontrol");
+                    $("#form-1").attr("action","/index/loginalu");
+                    $("#recuperar").attr("href","/recuperar/index?opc=3");
+   
+                }); });
+            
+        </script>
+            
+    </body>
+</html>

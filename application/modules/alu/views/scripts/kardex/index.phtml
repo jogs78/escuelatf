@@ -1,0 +1,132 @@
+ <h3 class="text-center text-info"> Kardex de calificaciones</h3>
+ <div class="container">
+     <table class="table table-bordered">
+         <tr class="btn-info">
+             <td>Numero de control</td>
+             <td>Nombre</td>
+             <td>Semestre Actual</td>
+              </tr>
+         <tr>
+             <td><?php echo $this->alumno->numcontrol; ?></td>
+             <td><?php echo utf8_encode($this->alumno->apellidos." ".$this->alumno->nombres); ?></td>
+             <td><?php echo $this->alumno->semestre_act;?></td>
+          </tr>
+         
+     </table>
+     
+     <table class="table table-bordered">
+         <tr class="btn-inverse">
+             <td class="input-mini">No.</td>
+             <td>Clave</td>
+             <td class="span3">Materia</td>
+             <td>Creditos</td>
+             <td>Cal. Final</td>
+             <td>E.E.</td>
+             <td>E.T.S</td>
+             <td>Observaciones</td>
+         </tr>
+             <?php   $x=1; $bandera_ciclo=0;  $suma=0; $contador=0; $ciclo=null; $ma=0;$total=0;?>
+             <?php  foreach ($this->kardex as $cal): ?>
+             <?php  if(strcmp($ciclo, $cal->ciclo)): ?>
+              <?php
+              
+                if($ciclo):?>
+                <?php $promedio_semestral=$suma/$contador;
+                     $promedio_semestral=redondear($promedio_semestral);   
+                ?>
+         <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td class=" text-center btn-info">Calificacion Semestral</td>
+             <td class="text-info"><?php if($contador){ echo $promedio_semestral;}?> </td>
+             <td></td>
+             <td></td>
+             <td></td>
+             
+         </tr>
+               <?php
+                
+                $bandera_ciclo=0;
+                $contador=0;
+                $suma=0;
+          
+               
+            endif;?>
+           <?php endif;?>
+           <?php  if($bandera_ciclo==0):?>
+           <?php  $ciclo=$cal->ciclo; $bandera_ciclo=1;?>
+           <tr>
+               <td colspan=8  class="text-info"><center><?php  echo $ciclo;?></center> </td> 
+           </tr>  
+           <?php endif;?>
+           <?php
+           if($bandera_ciclo==1)
+           {
+                    $contador++;
+                    if($cal->calificacionfinal && $cal->calificacionfinal>=6 )
+                    {
+                        $suma+=$cal->calificacionfinal; 
+                        $ma++;
+                        $total+=$cal->calificacionfinal;
+                    }
+                    if ($cal->ee && $cal->ee>=6 )
+                    {
+                        $suma+=$cal->ee;
+                        $ma++;
+                        $total+=$cal->ee;
+                    }
+                    if($cal->ets && $cal->ets>=6 )
+                    {
+                        $suma+=$cal->ets;
+                        $ma++;
+                        $total+=$cal->ets;
+                    }
+           }
+           ?>   
+                <tr> 
+                    <td><?php echo $x; ?></td>
+                    <td><?php echo $cal->materia; ?></td>
+                    <td><small><?php echo $cal->asignatura; ?></small></td>
+                    <td><?php echo $cal->creditos; ?></td>
+                    <td><?php echo $cal->calificacionfinal; ?></td>
+                    <td><?php echo $cal->ee; ?></td>
+                    <td><?php echo $cal->ets; ?></td>
+                    <td><?php echo $cal->observaciones; ?></td>
+                   <?php $x++; ?>     
+                </tr>
+                <?php endforeach;?>
+                <?php if(   $contador){$promedio_semestral=$suma/$contador;
+                    $promedio_semestral=redondear($promedio_semestral);
+                }
+                    ?>
+         <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td class=" text-center btn-info">Calificacion Semestral</td>
+             <td class="text-info"><?php if($contador){ echo $promedio_semestral;}?> </td>
+             <td></td>
+             <td></td>
+             <td></td>
+             
+         </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="btn-inverse span2">Promedio Arimético:</td>
+                <td class="span1"><?php if($ma){ $pa=$total/$ma; $pa=redondear($pa); echo $pa;  }?></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+     </table>
+ </div>
+ 
+ <?php
+ function redondear($valor) {
+   $float_redondeado=round($valor * 100) / 100;
+   return $float_redondeado;
+} 
+ ?>

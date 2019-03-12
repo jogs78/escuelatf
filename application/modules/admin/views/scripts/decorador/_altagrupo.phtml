@@ -1,0 +1,60 @@
+<div class="container">
+<form class="form-horizontal" method="post">
+    <fieldset>
+        <center>
+            <legend>Asignar Materia a Profesores</legend>
+        </center>             
+    </fieldset>
+    <div class="row ">
+        <div class="span3">Semestre</div>
+        <div class="span3">Materia</div>
+        <div class="span3">Profesor</div>
+        <div class="span3">Periodo</div>
+        
+    </div> 
+        <div class="row ">
+    <div class="span3"><?php echo $this->element->getElement('semestre');?></div>
+    <div class="span3"><?php  echo $this->element->getElement('grupo') ;?></div>
+    <div class="span3"><?php  echo $this->element->getElement('profesor');?></div>
+    <div class="span3"><?php  echo $this->element->getElement('periodo');?></div>
+    </div>   
+        <?php if(isset($_POST['semestre']) && $_POST['semestre']!=0):
+            $semestre=$_POST['semestre'];
+            $alumnos= new Admin_Model_Alumno();
+            $posts= $alumnos->alumnos($semestre);
+            ?>
+            <br><br>
+    <table class="table table-bordered"> 
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>Semestre </th>
+                <th>Materia </th>
+                <th>Profesor</th>
+                <th>Ciclo Escolar</th>
+                <th>Editar</th>
+            </tr>
+            
+        </thead>
+        
+        <?php  foreach ($posts as $post):?>
+            <tbody>
+                <tr class="success">
+                    <td ><?php echo ''.$semestre?></td>
+                    <td ><?php echo $post->asignatura;?></td>
+                    <td><?php echo $post->nombre;?></td>
+                    <td><?php echo $post->idciclo;?></td>     
+                    <td><a href="/admin/alumno/editargrupo?idgrupo=<?php echo $post->idgrupo;?>&semestre=<?php echo $semestre?>"><IMG SRC="/img/lapiz.jpg" WIDTH=20 HEIGHT=20></a></td>
+                </tr>
+            </tbody> 
+            <?php endforeach;?>
+            </table>
+            <div class="form-actions">
+                    <?php echo $this->element->getElement('Guardar'); ?>
+        </div>
+       <?php endif; ?>               
+    
+     
+       
+    </form>
+</div>

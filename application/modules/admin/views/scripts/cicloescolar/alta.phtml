@@ -1,0 +1,59 @@
+<script type="text/javascript">
+        $(function() {
+      $( "#inicio" ).datepicker({  
+          dateFormat: "yy-mm-dd",
+          dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
+          dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+          monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Dicimbre" ],
+          duration: "slow",
+          showAnim: "slideDown"});       
+  });
+          $(function() {
+      $( "#fin" ).datepicker({  
+          dateFormat: "yy-mm-dd",
+          dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
+          dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+          monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Dicimbre" ],
+          duration: "slow",
+          showAnim: "slideDown"});       
+  });
+</script>
+<div class="container">
+    <?php echo $this->form;?>
+</div>
+<?php if(count($this->posts)) :?>
+
+          <div class="span2"></div>
+          <div class="span8">
+<table class="table table-hover">
+        <thead>
+        <th>
+            <tr>
+                <th >Semestre Escolar</th>
+                <th>inicio</th>
+                <th>fin</th>
+                <th>        </th>
+                
+            </tr>          
+        </thead>
+        
+        <?php foreach ($this->posts as $post):?>
+        <tbody>
+        <tr class="info">
+            <td ><?php echo $post->idciclo;?></td>
+            <td><?php echo $post->iniciop;?></td>
+            <td><?php echo $post->finp;?></td>
+            <?php if($post->periodoiniciado==0): ?>
+            <td><a href="javascript:ciclo('iniciar','<?php echo $post->idciclo ?>')" > iniciar</a></td>
+            
+            <?php endif;?>
+            <?php if($post->periodoiniciado==1): ?>
+            <td><a href="javascript:ciclo('terminar','<?php echo $post->idciclo ?>')"> terminar</a></td>
+            <?php endif;?>
+        </tr>
+        <?php endforeach;?>
+        <?php endif;?>
+        </tbody>
+    </table>
+    </div>
+<div class="span2"></div>

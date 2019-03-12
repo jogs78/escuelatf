@@ -1,0 +1,48 @@
+<form class="form-horizontal" method="post">
+        <fieldset>
+            <div class="control-group success">
+                <label class="control-label">Numero de control*:</label>
+                <div class="controls">
+                <?php echo $this->element->getElement('numcontrol');?> 
+                </div>
+                
+                 <label class="control-label">Nombre*:</label>
+                 <div class ="controls">
+                      <?php  echo $this->element->getElement('nombres') ; ?>
+                </div>
+                <label class="control-label">Apellidos*:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('apellidos') ; ?>
+                </div>
+                <label class="control-label">Fecha de nacimiento:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('fec_na') ; ?>
+                </div>
+                <label class="control-label">Direccion:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('direccion') ; ?>
+                </div>
+                <label class="control-label">Telefono:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('telefono') ; ?>
+                </div>
+                <label class="control-label">Correo Electronico*:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('correo_e') ; ?>
+                </div>
+                <label class="control-label">Clave de acceso:</label>
+                <div class="controls">
+                   <?php  echo $this->element->getElement('contrasena') ; ?>
+                </div>
+                
+            </div>         
+        </fieldset>
+                <div class="form-actions">
+                    <?php echo $this->element->getElement('submit'); ?>
+               </div>
+    
+       
+        
+    
+    </form>
+

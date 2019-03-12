@@ -1,0 +1,55 @@
+<div class="container">
+<form class="form-horizontal" method="post">
+    <fieldset>
+        <center>
+            <legend>Busqueda de Alumno</legend>
+        </center>             
+    </fieldset>
+    <div class="row ">
+        <div class="span3">Numer de Control</div>
+        <div class="span3">Nombre</div>
+        <div class="span3">Apellido</div>
+        <div class="span3">Boton</div>
+        
+    </div> 
+        <div class="row ">
+    <div class="span3"><?php echo $this->element->getElement('num_control');?></div>
+    <div class="span3"><?php  echo $this->element->getElement('nombre') ;?></div>
+    <div class="span3"><?php  echo $this->element->getElement('apellido');?></div>
+    <div class="span3"><?php  echo $this->element->getElement('submit');?></div>
+    </div>   
+        <?php
+        //if(isset($_POST['semestre']) && $_POST['semestre']!=0){
+           ?>   
+    <br>
+    <br>
+    <table class="table table-bordered"> 
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>Numero de Control</th>
+                <th>Nombre </th>
+                <th>Apellidos</th>
+                <th>Ciclo Escolar</th>
+                <th>Editar</th>
+            </tr>
+            
+        </thead>
+           <?php // foreach ($posts as $post):?>
+            <tbody>
+                <tr class="success">
+                    <td ></td>
+                    <td ></td>
+                    <td></td>
+                    <td></td>     
+                    <td></td>
+                </tr>
+            </tbody> 
+            <?php //endforeach;
+           // }?>
+                    
+    </table>
+
+       
+    </form>
+</div>

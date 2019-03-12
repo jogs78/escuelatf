@@ -1,0 +1,60 @@
+ <h3 class="text-center text-info">Calificaciones parciales del periodo actual</h3>
+ <?php
+   ?>
+ <div class="container">
+ 
+     <table class="table table-bordered">
+         <tr class="btn-info">
+             <td>Numero de control</td>
+             <td>Nombre</td>
+             <td>Semestre Actual</td>
+              </tr>
+         <tr>
+             <td><?php echo $this->alumno->numcontrol; ?></td>
+             <td><?php echo utf8_encode($this->alumno->apellidos." ".$this->alumno->nombres); ?></td>
+             <td><?php echo $this->alumno->semestre_act;?></td>
+          </tr>
+         
+     </table>
+      <table class="table table-bordered">
+         <tr class="btn-inverse">
+             <td>Clave</td>
+             <td>Materia</td>
+             <td>Profesor</td>
+             <td >1era evaluacion</td>
+             <td>2da evaluacion</td>
+             <td>3ra evaluacion</td>
+             <td>4ta evaluacion</td>
+             <td>final</td>
+             <td>ee</td>
+             <td>ets</td>
+             
+             
+             
+         </tr>
+         <?php if (isset($this->consulta)):?>
+         <?php foreach($this->consulta as $a):?>
+         <tr>
+             <td><?php echo $a->clavemateria;?></td>
+             <td><?php echo $a->asignatura;?></td>
+             <td><?php echo $a->nombre;?></td>
+             <td><?php echo $a->primera_e?></td>
+             <td><?php echo $a->segunda_e?></td>
+             <td><?php echo $a->tercera_e?></td>
+             <td><?php echo $a->cuarta_e?></td>
+             <td><?php echo $a->calificacionfinal?></td>
+             <td><?php echo $a->ee?></td>
+             <td><?php echo $a->ets?></td>
+         </tr>
+             
+         <?php endforeach;?>
+         <?php endif;?>
+         
+          
+      </table>
+     <?php if ( isset($this->mensaje) ) {
+                    echo $this->mensaje;
+                    
+                   } ?>
+         
+ </div>

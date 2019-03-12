@@ -1,0 +1,27 @@
+ <h3 class="text-center text-info"> Imprimir Boleta de calificacionés</h3>
+ <?php
+   ?>
+ <div class="container">
+ 
+     <table class="table table-bordered">
+         <tr class="btn-info">
+             <td>Numero de control</td>
+             <td>Nombre</td>
+             <td>Semestre Actual</td>
+              </tr>
+         <tr>
+             <td><?php echo $this->alumno->numcontrol; ?></td>
+             <td><?php echo utf8_encode($this->alumno->apellidos." ".$this->alumno->nombres); ?></td>
+             <td><?php echo $this->alumno->semestre_act;?></td>
+          </tr>
+          
+        
+     </table>
+     <div class="row">
+         <div class="span4"></div>
+         <div class="span4"><?php echo $this->form;?> </div>
+         <div class="span4"></div>
+     </div>
+         
+         
+  

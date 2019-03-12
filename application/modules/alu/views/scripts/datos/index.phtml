@@ -1,0 +1,91 @@
+ <h3 class="text-center text-info"> Datos personales</h3>
+ <?php
+   ?>
+ <div class="container">
+ 
+     <table class="table table-bordered">
+         <tr class="btn-info">
+             <td>Numero de control</td>
+             <td>Nombre</td>
+             <td>Semestre Actual</td>
+             <td>Fecha de Na.</td>
+             <td>Sexo</td>
+         </tr>
+         <tr>
+             <td><?php echo $this->alumno->numcontrol; ?></td>
+             <td><?php echo utf8_encode($this->alumno->apellidos)." ".utf8_encode($this->alumno->nombres); ?></td>
+             <td><?php echo $this->alumno->semestre_act;?></td>
+             <td><?php echo $this->alumno->fec_na;?></td>
+             <td><?php echo $this->alumno->sexo;?></td>
+         </tr>
+         
+     </table>
+     
+     
+     <form class="form-horizontal" method="post" id="f">
+     <fieldset>
+         <legend class="btn-info text-center">Actualizacion de datos</legend>
+         <div class="control">
+            <label class="control-label">Telefono:</label>
+             <div class="controls">
+                 <input type="text"   required="true" id="numcontrol[telefono]" value="<?php  echo $this->alumno->telefono;?>" name="numcontrol[telefono]"  >
+             </div>
+         </div>
+     </fieldset>
+     
+     <fieldset>
+     <label class="control-label">Correo electronico:</label>
+        <div class ="controls">
+            <input type="email"  id="numcontrol[correo]" required="true"  class="span4" value="<?php  echo $this->alumno->correo_e;?>" name="numcontrol[correo_e]" >             
+        </div>
+    </fieldset>
+     <fieldset>
+     <label class="control-label">Direccion:</label>
+        <div class ="controls">
+            <input type="text"  id="numcontrol[direccion]" required="true"  class="span6" value="<?php  echo $this->alumno->direccion; ?>" name="numcontrol[direccion]" >             
+        </div>
+    </fieldset>
+          <div class="form-actions">
+              <input type="submit" value="Actualizar" class="btn-primary btn-large" >
+               </div>
+   </form>           
+       </div>
+        
+<script type="text/javascript">
+      
+  $("#f").validate({
+             
+            // Empezamos por las reglas
+	        rules:{
+                     'numcontrol[direccion]': { // Cuando hay mas de una regla abriremos llaves, aqui validamos username
+	            required: true, // Tienes que ser requerido
+	                // Tiene que tener un tamaño mayor o igual a dos caracteres
+	            },
+                    'numcontrol[telefono]': { // Cuando hay mas de una regla abriremos llaves, aqui validamos username
+	            required: true, 
+                     minlength: 7, 
+//// Tienes que ser requerido
+	                 // Tiene que tener un tamaño mayor o igual a dos caracteres
+	            },
+                    'numcontrol[correo]': { // Cuando hay mas de una regla abriremos llaves, aqui validamos username
+	            required: true, // Tienes que ser requerido
+	                // Tiene que tener un tamaño mayor o igual a dos caracteres
+	            },
+                },
+                messages:{
+                    'numcontrol[direccion]': {
+				required: "Por favor, introduzca su direccion",
+			},
+			 'numcontrol[telefono]': {
+				required: "Por favor, introduzca su telefono",
+                                minlength: "Su telefono debe de tener al menos 7 digitos",
+                            },
+                            	 'numcontrol[correo]': {
+				required: "Por favor, introduzca su correo",	
+                            }
+
+                }
+                   
+            });        
+    
+</script>
